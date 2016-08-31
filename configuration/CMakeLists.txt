@@ -93,7 +93,12 @@ if(NOT "${FRUIT_HAS_STD_IS_TRIVIALLY_COPYABLE}" AND NOT "${FRUIT_HAS_IS_TRIVIALL
   message(WARNING "The current standard library doesn't support std::is_trivially_copyable<T>, and the current compiler doesn't support __is_trivially_copyable(T) nor __has_trivial_copy(T). Attemping to use std::is_trivially_copyable<T> anyway, but it most likely won't work.")
 endif()
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/fruit-config-base.h.in ${CMAKE_BINARY_DIR}/include/fruit/impl/fruit-config-base.h)
+#configure_file(${CMAKE_CURRENT_SOURCE_DIR}/fruit-config-base.h.in ${CMAKE_BINARY_DIR}/include/fruit/impl/fruit-config-base.h)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/fruit-config-base.h.in ${CMAKE_CURRENT_BINARY_DIR}/include/fruit/impl/fruit-config-base.h)
 
-install(FILES ${CMAKE_BINARY_DIR}/include/fruit/impl/fruit-config-base.h
-  DESTINATION ${INSTALL_INCLUDE_DIR}/impl)
+#install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/fruit/impl/fruit-config-base.h
+#  DESTINATION ${INSTALL_INCLUDE_DIR}/impl)
+file(COPY ${CMAKE_CURRENT_BINARY_DIR}/include/fruit/impl/fruit-config-base.h
+  DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../include/fruit/impl/)
+message("From: ${CMAKE_CURRENT_BINARY_DIR}/include/fruit/impl/fruit-config-base.h")
+message("To: ${CMAKE_CURRENT_SOURCE_DIR}/../include/fruit/impl/")

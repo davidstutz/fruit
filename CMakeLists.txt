@@ -54,8 +54,10 @@ set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${FRUIT_ADDITIONAL_L
 set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${FRUIT_ADDITIONAL_LINKER_FLAGS}")
 set(FRUIT_COMPILE_FLAGS "${CMAKE_CXX_FLAGS} ${FRUIT_ADDITIONAL_COMPILE_FLAGS}")
 
-include_directories(${CMAKE_SOURCE_DIR}/include)
-include_directories(${CMAKE_BINARY_DIR}/include)
+#include_directories(${CMAKE_SOURCE_DIR}/include)
+#include_directories(${CMAKE_BINARY_DIR}/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/include)
 
 # (debug-only) compile switch to get deep template instantiation stacktraces for errors (instead
 # of the user-friendly default that hides Fruit internals).
@@ -87,9 +89,9 @@ endif()
 
 add_subdirectory(extras EXCLUDE_FROM_ALL)
 
-install(DIRECTORY include/fruit/
-  DESTINATION "${INSTALL_INCLUDE_DIR}"
-  FILES_MATCHING PATTERN "*.h")
+#install(DIRECTORY include/fruit/
+#  DESTINATION "${INSTALL_INCLUDE_DIR}"
+#  FILES_MATCHING PATTERN "*.h")
 
 set(CPACK_PACKAGE_NAME "Fruit")
 set(CPACK_PACKAGE_VENDOR "Marco Poletti")
