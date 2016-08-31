@@ -7,3 +7,24 @@ It allows to split the implementation code in "components" (aka modules) that ca
 From a component with no requirements it's then possible to create an injector, that provides an instance of the interfaces exposed by the component.
 
 See the [wiki](https://github.com/google/fruit/wiki) for more information, including installation instructions, tutorials and reference documentation.
+
+This fork contains edited `CMakeLists.txt` and `configuration/CMakeLists.txt`. These changes may prevent fruit
+from being installed as described in [wiki](https://github.com/google/fruit/wiki), but allows fruit to be used from within a subdirectory.
+Example:
+
+    CMakeLists.txt
+    vendor/
+    |- fruit/
+       |- configuration/
+          |- CMakeLists.txt # changed
+          |- ...
+       |- CMakeLists.txt # changed
+       |- ...
+
+The top-level `CMakeLists.txt` contains:
+
+    add_subdirectory(vendor/fruit)
+    # ...
+
+    add_executable(main main.cpp)
+    target_link_libraries(main fruit) # link fruit
